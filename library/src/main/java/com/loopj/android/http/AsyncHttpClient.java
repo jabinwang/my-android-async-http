@@ -208,6 +208,12 @@ public class AsyncHttpClient {
         httpClient.addRequestInterceptor(new HttpRequestInterceptor() {
             @Override
             public void process(HttpRequest request, HttpContext context) {
+//                Header[] headers = request.getAllHeaders();
+//                for (Header header:
+//                    headers ) {
+//                    HeaderElement[] headerElements = header.getElements();
+//                }
+
                 if (!request.containsHeader(HEADER_ACCEPT_ENCODING)) {
                     request.addHeader(HEADER_ACCEPT_ENCODING, ENCODING_GZIP);
                 }

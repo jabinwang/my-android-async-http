@@ -51,7 +51,7 @@ public class RequestHandle {
     public boolean cancel(final boolean mayInterruptIfRunning) {
         final AsyncHttpRequest _request = request.get();
         if (_request != null) {
-            if (Looper.myLooper() == Looper.getMainLooper()) {
+            if (Looper.myLooper() == Looper.getMainLooper()) {// TODO: 2016/9/26 新建子线程取消 
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -89,7 +89,7 @@ public class RequestHandle {
         return _request == null || _request.isCancelled();
     }
 
-    public boolean shouldBeGarbageCollected() {
+    public boolean shouldBeGarbageCollected() {// TODO: 2016/9/26 主动回收内存 
         boolean should = isCancelled() || isFinished();
         if (should)
             request.clear();

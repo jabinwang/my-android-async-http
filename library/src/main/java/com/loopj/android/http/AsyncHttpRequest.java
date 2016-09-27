@@ -37,10 +37,10 @@ public class AsyncHttpRequest implements Runnable {
     private final HttpContext context;
     private final HttpUriRequest request;
     private final ResponseHandlerInterface responseHandler;
-    private final AtomicBoolean isCancelled = new AtomicBoolean();
+    private final AtomicBoolean isCancelled = new AtomicBoolean();// TODO: 2016/9/23  
     private int executionCount;
     private boolean cancelIsNotified;
-    private volatile boolean isFinished;
+    private volatile boolean isFinished;// TODO: 2016/9/23
     private boolean isRequestPreProcessed;
 
     public AsyncHttpRequest(AbstractHttpClient client, HttpContext context, HttpUriRequest request, ResponseHandlerInterface responseHandler) {
@@ -125,7 +125,7 @@ public class AsyncHttpRequest implements Runnable {
         // Carry out post-processing for this request.
         onPostProcessRequest(this);
 
-        isFinished = true;
+        isFinished = true; // TODO: 2016/9/26 同步 
     }
 
     private void makeRequest() throws IOException {
@@ -172,7 +172,7 @@ public class AsyncHttpRequest implements Runnable {
         IOException cause = null;
         HttpRequestRetryHandler retryHandler = client.getHttpRequestRetryHandler();
         try {
-            while (retry) {
+            while (retry) { // TODO: 2016/9/26 循环重试 
                 try {
                     makeRequest();
                     return;

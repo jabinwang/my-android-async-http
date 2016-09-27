@@ -72,7 +72,7 @@ public abstract class SampleParentActivity extends Activity implements SampleInt
     private static final int MENU_ENABLE_LOGGING = 3;
     protected static String PROTOCOL = PROTOCOL_HTTPS;
     private final List<RequestHandle> requestHandles = new LinkedList<RequestHandle>();
-    public LinearLayout customFieldsLayout;
+    public LinearLayout customFieldsLayout;// TODO: 2016/9/27
     private AsyncHttpClient asyncHttpClient = new AsyncHttpClient() {
 
         @Override
@@ -216,7 +216,7 @@ public abstract class SampleParentActivity extends Activity implements SampleInt
     private void showLoggingVerbosityDialog() {
         AlertDialog ad = new AlertDialog.Builder(this)
                 .setTitle("Set Logging Verbosity")
-                .setSingleChoiceItems(new String[]{
+                .setSingleChoiceItems(  new String[]{
                         "VERBOSE",
                         "DEBUG",
                         "INFO",

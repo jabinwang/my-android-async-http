@@ -18,6 +18,7 @@
 
 package com.loopj.android.http.sample;
 
+import android.util.Log;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -26,6 +27,7 @@ import com.loopj.android.http.RequestHandle;
 import com.loopj.android.http.ResponseHandlerInterface;
 
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.HeaderElement;
 import cz.msebera.android.httpclient.HttpEntity;
 
 public class GetSample extends SampleParentActivity {
@@ -70,6 +72,17 @@ public class GetSample extends SampleParentActivity {
                 debugHeaders(LOG_TAG, headers);
                 debugStatusCode(LOG_TAG, statusCode);
                 debugResponse(LOG_TAG, new String(response));
+                for (Header header:
+                     getRequestHeaders()) {
+                    Log.e(LOG_TAG, "onSuccess: "+header.getValue());
+                    if(header.getElements() != null){
+                        for (HeaderElement element:
+                             header.getElements()) {
+                            Log.e(LOG_TAG, "onElements: "+element);
+                        }
+
+                    }
+                }
             }
 
             @Override
@@ -88,6 +101,11 @@ public class GetSample extends SampleParentActivity {
                         String.format("Request is retried, retry no. %d", retryNo),
                         Toast.LENGTH_SHORT)
                         .show();
+            }
+
+            @Override
+            public Header[] getRequestHeaders() {
+                return super.getRequestHeaders();
             }
         };
     }
